@@ -1,5 +1,7 @@
+require('dotenv').config();
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://shashankbankar5:CQ985O2whRbcJyGL@cluster0.t222yoh.mongodb.net/Paytm')
+
+mongoose.connect(process.env.DATABASE_URL)
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -31,11 +33,11 @@ const accountsSchema = new mongoose.Schema({
         type : Number,
         required : true
     }
-   
 })
 const Account = mongoose.model('accounts', accountsSchema)
 const User = mongoose.model('users', userSchema)
 module.exports = {
+
     User,
     Account
 }
